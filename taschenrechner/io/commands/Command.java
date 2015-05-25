@@ -1,5 +1,5 @@
 package io.commands;
 
 public interface Command {
-  public Command execute();
+	public Command execute();
 }

@@ -2,24 +2,21 @@ package io.commands;
 
 import business.Rechner;
 
+public class Redo implements Command {
 
-public class Redo implements Command{
-	
 	private int vorherAnzeige;
 	private int vorherSpeicher;
 	private Rechner rechner;
 	Undo undo = new Undo(this.rechner);
 
-		
-	
-	public Redo(Rechner rechner){
+	public Redo(Rechner rechner) {
 		this.rechner = rechner;
 		undo.setAltAnzeige(this.rechner.getAnzeige());
-		undo.setAltSpeicher(this.rechner.getSpeicher()); 
+		undo.setAltSpeicher(this.rechner.getSpeicher());
 		this.vorherAnzeige = this.rechner.getAnzeige();
 		this.vorherSpeicher = this.rechner.getSpeicher();
 	}
-	
+
 	public int getVorherAnzeige() {
 		return vorherAnzeige;
 	}
@@ -27,7 +24,6 @@ public class Redo implements Command{
 	public void setVorherAnzeige(int vorherAnzeige) {
 		this.vorherAnzeige = vorherAnzeige;
 	}
-
 
 	public int getVorherSpeicher() {
 		return vorherSpeicher;
@@ -42,7 +38,7 @@ public class Redo implements Command{
 
 		this.rechner.setAnzeige(this.vorherAnzeige);
 		this.rechner.setSpeicher(this.vorherSpeicher);
-		
+
 		return undo;
 	}
 

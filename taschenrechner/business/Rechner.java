@@ -1,63 +1,60 @@
 package business;
 
-
 import helper.language.Messages;
 
 public class Rechner {
 
 	private int anzeige;
 	private int speicher;
-	
 
 	public int getAnzeige() {
 		return anzeige;
 	}
-	
+
 	public void setAnzeige(int anzeige) {
 		this.anzeige = anzeige;
 	}
-	
+
 	public int getSpeicher() {
 		return speicher;
 	}
-	
+
 	public void setSpeicher(int speicher) {
 		this.speicher = speicher;
 	}
 
 	public void addieren(int wert) {
-		this.anzeige += wert;		
+		this.anzeige += wert;
 	}
-	
+
 	public void subtrahieren(int wert) {
-		this.anzeige -= wert;		
+		this.anzeige -= wert;
 	}
-	
-	public void speichern(){
+
+	public void speichern() {
 		this.speicher = this.anzeige;
 	}
-	
-	public void speicherAddieren(){
+
+	public void speicherAddieren() {
 		this.anzeige += this.speicher;
 	}
-	
-	public void speicherSubtrahieren(){
+
+	public void speicherSubtrahieren() {
 		this.anzeige -= this.speicher;
 	}
-	
-	public void reset(){
+
+	public void reset() {
 		this.anzeige = 0;
 		this.speicher = 0;
 	}
-	
-	
-	public Rechner(){
-		
+
+	public Rechner() {
+
 	}
-	
+
 	@Override
-	public String toString(){
-	  return Messages.getString("Rechner.0") + this.speicher   //$NON-NLS-1$
-			  +Messages.getString("Rechner.1") + this.anzeige;   //$NON-NLS-1$
+	public String toString() {
+		return Messages.getString("Rechner.0") + this.speicher //$NON-NLS-1$
+				+ Messages.getString("Rechner.1") + this.anzeige; //$NON-NLS-1$
 	}
 }

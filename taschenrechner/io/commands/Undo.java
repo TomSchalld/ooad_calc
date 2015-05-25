@@ -1,21 +1,20 @@
 package io.commands;
 
-import java.util.Stack;
-
 import business.Rechner;
 
-public class Undo implements Command{
-	
+public class Undo implements Command {
+
 	private int altAnzeige;
 	private int altSpeicher;
 	private Rechner rechner;
-	private Stack<Command> wieder = new Stack<Command>();
-	
-	public Undo(Rechner rechner){
+
+	public Undo(Rechner rechner) {
 		this.rechner = rechner;
+		this.altAnzeige = this.rechner.getAnzeige();
+		this.altSpeicher = this.rechner.getSpeicher();
+
 	}
-	
-	
+
 	public int getAltSpeicher() {
 		return altSpeicher;
 	}
@@ -24,7 +23,6 @@ public class Undo implements Command{
 		this.altSpeicher = altSpeicher;
 	}
 
-
 	public int getAltAnzeige() {
 		return altAnzeige;
 	}
@@ -32,15 +30,7 @@ public class Undo implements Command{
 	public void setAltAnzeige(int altAnzeige) {
 		this.altAnzeige = altAnzeige;
 	}
-	
-	public void pushItIn(Redo redo){
-		this.wieder.push(redo);
-	}
-	
-	public Command getRedoFromStack(){
-		return this.wieder.pop();
-	}
-	
+
 	@Override
 	public String toString() {
 		return "Undo [altAnzeige=" + altAnzeige + ", altSpeicher="
@@ -49,9 +39,10 @@ public class Undo implements Command{
 
 	@Override
 	public Command execute() {
+		Undo u = new Undo(this.rechner);
 		this.rechner.setAnzeige(this.altAnzeige);
 		this.rechner.setSpeicher(this.altSpeicher);
-		return this;
+		return u;
 	}
 
 }
